@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>shop</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<include file="public:userpublic" />
+	<div class="uc_index_right_div">
+		<div id="right_center">
+			<a href="{:U('UserCenter/referOrder')}">提交工单</a>
+			<hr>
+			<div class="head_r_div">
+				&nbsp;工单列表
+			</div>
+			<div id="tablediv">
+			<table>
+					<tr>
+						<td>工单编号</td>
+						<td>问题内容</td>
+						<td>提交时间</td>
+						<td>状态</td>
+						<td>操作</td>
+					</tr>
+				<foreach name="list" item="li">
+					<tr>
+						<td colspan="5">
+							<hr>
+						</td>
+					</tr>
+					<tr>
+						<td>{$li['id']+1000}</td>
+						<td>{$li.content.question}</td>
+						<td>{$li.ltime}</td>
+						<td><if condition="$li.status eq 'ing'">进行中<else />已结束</if></td>
+						<td><a href="{:U('UserCenter/showContent',array('id'=>$li['id']))}">查看</a></td>
+					</tr>
+				</foreach>
+					<tr>
+						<td colspan="5">
+							<hr>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="5"><div class="pages">{$pages}</div></td>
+					</tr>
+			</table>
+			</div>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
